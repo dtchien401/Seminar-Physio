@@ -3,776 +3,404 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Membership Transition Campaign</title>
+  <title>Seminar ProPhysio - Cổ Vai Gáy & Lưng Dưới</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    body { font-family: Arial, "Helvetica Neue", sans-serif; }
+    .glass { background: rgba(255,255,255,.9); backdrop-filter: blur(10px); }
+    .card { border: 1px solid rgba(15,23,42,.08); box-shadow: 0 18px 45px rgba(15,23,42,.08); }
+    .tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .tab-btn.active { background:#dc2626; color:#fff; box-shadow:0 10px 25px rgba(220,38,38,.22); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; animation: fade .18s ease-in-out; }
+    .zoom-image { cursor: zoom-in; }
+    @keyframes fade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    @media print {
+      .no-print { display:none !important; }
+      .tab-panel { display:block !important; break-inside: avoid; }
+      body { background:white !important; }
+    }
+  </style>
 </head>
-<body>
-  <div class="page-shell">
-    <div class="page-bg"></div>
 
-    <header class="sticky top-0 z-40 backdrop-blur bg-white/75 border-b border-white/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-        <div>
-          <div class="text-xs font-black uppercase tracking-[0.22em] text-red-600">
-            California Fitness
+<body class="bg-slate-100 text-slate-900">
+  <div class="min-h-screen bg-[radial-gradient(circle_at_top_left,#fee2e2,transparent_32%),radial-gradient(circle_at_top_right,#dbeafe,transparent_30%),linear-gradient(180deg,#fff,#f8fafc)]">
+
+    <header class="px-6 pt-6 md:px-10">
+      <div class="max-w-7xl mx-auto glass card rounded-[2rem] p-6 md:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-red-600 text-white grid place-items-center font-black text-xl">C</div>
+              <div>
+                <p class="tag text-red-600 font-bold">ProPhysio Seminar</p>
+                <p class="text-sm text-slate-500">Giải phẫu cơ • Cơ chế đau • Phòng ngừa</p>
+              </div>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black leading-tight tracking-tight">
+              Hiểu cơ thể để <span class="text-red-600">giảm đau</span> đúng cách
+            </h1>
+            <p class="mt-3 text-lg text-slate-600 max-w-4xl">
+              Tài liệu trình bày dạng tab cho seminar về đau cổ vai gáy và đau lưng dưới.
+            </p>
           </div>
-          <div class="lang-vi text-sm text-slate-500 mt-1">
-            Membership transition campaign
-          </div>
-          <div class="lang-en lang-hidden text-sm text-slate-500 mt-1">
-            Membership transition campaign
+          <div class="rounded-3xl bg-slate-950 text-white p-5 max-w-md">
+            <p class="tag text-red-300 font-bold">Thông điệp chính</p>
+            <p class="mt-2 text-2xl font-black">Đau không chỉ nằm ở chỗ đau.</p>
+            <p class="mt-2 text-slate-300">Cổ vai gáy có thể đến từ vai – ngực – bả vai. Lưng dưới có thể đến từ hông – mông – cơ lõi.</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
-          <button
-            id="langToggle"
-            type="button"
-            class="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black tracking-[0.18em] text-slate-700 hover:border-red-200 hover:text-red-600 transition"
-          >
-            EN
-          </button>
-        </div>
+        <nav class="no-print mt-7 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
+          <button class="tab-btn active rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="tong-quan">Tổng quan</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="nhom-co">Nhóm cơ</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="co-vai-gay">Cổ vai gáy</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="lung-duoi">Lưng dưới</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="nguyen-nhan">Nguyên nhân</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="hinh-anh">Hình ảnh</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="thuc-hanh">Thực hành</button>
+          <button class="tab-btn rounded-2xl px-4 py-3 font-bold bg-white border" data-tab="ket-luan">Kết luận</button>
+        </nav>
       </div>
     </header>
 
-    <main class="relative z-10">
-      <section class="pt-8 pb-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+<!-- TAB STRUCTURE NOTE -->
+<div class="max-w-7xl mx-auto px-6 md:px-10 mt-4">
+  <div class="rounded-2xl bg-emerald-50 border border-emerald-200 px-5 py-4 text-emerald-900 text-sm">
+    Website vẫn được chia theo từng TAB riêng:
+    Tổng quan • Nhóm cơ • Cổ vai gáy • Lưng dưới • Nguyên nhân • Hình ảnh • Thực hành • Kết luận
+  </div>
+</div>
 
-          <!-- HERO -->
-          <section class="hero-surface rounded-[32px] p-6 md:p-8 lg:p-10 soft-card border border-white/70 overflow-hidden relative">
-            <div class="hero-glow hero-glow-1"></div>
-            <div class="hero-glow hero-glow-2"></div>
+<main class="max-w-7xl mx-auto px-6 md:px-10 py-6">
 
-            <div class="relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-center">
-              <div>
-                <div class="inline-flex items-center rounded-full bg-red-50 text-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em]">
-                  <span class="lang-vi">July 2026 transition</span>
-                  <span class="lang-en lang-hidden">July 2026 transition</span>
-                </div>
-
-                <h1 class="lang-vi mt-5 text-4xl md:text-5xl lg:text-6xl font-black leading-[1.04] text-slate-900 max-w-4xl">
-                  Từ <span class="text-red-600">tháng 7/2026</span>, Cali sẽ chuyển sang
-                  <span class="text-red-600">membership model mới</span>
-                </h1>
-                <h1 class="lang-en lang-hidden mt-5 text-4xl md:text-5xl lg:text-6xl font-black leading-[1.04] text-slate-900 max-w-4xl">
-                  From <span class="text-red-600">July 2026</span>, Cali will move to a
-                  <span class="text-red-600">new membership model</span>
-                </h1>
-
-                <p class="lang-vi mt-5 text-lg md:text-xl leading-8 text-slate-600 max-w-3xl">
-                  Các gói cũ sẽ không còn tiếp tục bán. Từ nay đến hết tháng 6/2026 là giai đoạn tốt nhất để
-                  renew hoặc chốt sớm các sản phẩm hiện tại nếu khách vẫn yêu thích quyền lợi quen thuộc.
-                </p>
-                <p class="lang-en lang-hidden mt-5 text-lg md:text-xl leading-8 text-slate-600 max-w-3xl">
-                  The old packages will no longer be sold. From now until the end of June 2026 is the best window
-                  to renew or secure current products for clients who still prefer familiar benefits.
-                </p>
-
-                <div class="mt-7 flex flex-col sm:flex-row gap-3">
-                  <button
-                    type="button"
-                    class="cta-primary"
-                    onclick="openProductTabAndScroll('intro')"
-                  >
-                    <span class="lang-vi">Xem phần giới thiệu</span>
-                    <span class="lang-en lang-hidden">View introduction</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="cta-secondary"
-                    onclick="openProductTabAndScroll('combo')"
-                  >
-                    <span class="lang-vi">Khám phá combo gợi ý</span>
-                    <span class="lang-en lang-hidden">Explore recommended combos</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="cta-ghost"
-                    onclick="openProductTabAndScroll('builder')"
-                  >
-                    <span class="lang-vi">Tự thiết kế membership</span>
-                    <span class="lang-en lang-hidden">Build your own membership</span>
-                  </button>
-                </div>
-
-                <div class="mt-8 grid sm:grid-cols-3 gap-4">
-                  <div class="metric-card">
-                    <div class="metric-kicker">
-                      <span class="lang-vi">Now → Jun 2026</span>
-                      <span class="lang-en lang-hidden">Now → Jun 2026</span>
-                    </div>
-                    <div class="metric-title">
-                      <span class="lang-vi">Maximize current packages</span>
-                      <span class="lang-en lang-hidden">Maximize current packages</span>
-                    </div>
-                  </div>
-
-                  <div class="metric-card">
-                    <div class="metric-kicker">
-                      <span class="lang-vi">Jul 2026</span>
-                      <span class="lang-en lang-hidden">Jul 2026</span>
-                    </div>
-                    <div class="metric-title">
-                      <span class="lang-vi">Launch new model</span>
-                      <span class="lang-en lang-hidden">Launch new model</span>
-                    </div>
-                  </div>
-
-                  <div class="metric-card">
-                    <div class="metric-kicker">
-                      <span class="lang-vi">After Jul 2026</span>
-                      <span class="lang-en lang-hidden">After Jul 2026</span>
-                    </div>
-                    <div class="metric-title">
-                      <span class="lang-vi">Old packages stop selling</span>
-                      <span class="lang-en lang-hidden">Old packages stop selling</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="relative">
-                <div class="transition-stage">
-                  <div class="transition-rail"></div>
-
-                  <div class="timeline-node is-current">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <div class="timeline-month">
-                        <span class="lang-vi">Hiện tại</span>
-                        <span class="lang-en lang-hidden">Now</span>
-                      </div>
-                      <h3 class="timeline-title">
-                        <span class="lang-vi">Đẩy mạnh chốt gói cũ</span>
-                        <span class="lang-en lang-hidden">Push current packages</span>
-                      </h3>
-                      <p class="timeline-copy">
-                        <span class="lang-vi">Khuyến nghị hội viên renew, gia hạn hoặc khóa trước quyền lợi quen thuộc.</span>
-                        <span class="lang-en lang-hidden">Encourage renewals, extensions, and early lock-in of familiar benefits.</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="timeline-node is-highlight">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <div class="timeline-month">July 2026</div>
-                      <h3 class="timeline-title">
-                        <span class="lang-vi">Bắt đầu model mới</span>
-                        <span class="lang-en lang-hidden">New model begins</span>
-                      </h3>
-                      <p class="timeline-copy">
-                        <span class="lang-vi">Từ bundle cố định sang lựa chọn access + benefits theo nhu cầu.</span>
-                        <span class="lang-en lang-hidden">From fixed bundles to access + benefits chosen by actual needs.</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="timeline-node">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <div class="timeline-month">
-                        <span class="lang-vi">Sau đó</span>
-                        <span class="lang-en lang-hidden">After that</span>
-                      </div>
-                      <h3 class="timeline-title">
-                        <span class="lang-vi">Không còn bán gói cũ</span>
-                        <span class="lang-en lang-hidden">Old packages no longer sold</span>
-                      </h3>
-                      <p class="timeline-copy">
-                        <span class="lang-vi">Staff cần chuyển ngôn ngữ bán hàng sang personalization, flexibility và control.</span>
-                        <span class="lang-en lang-hidden">Staff should shift selling language to personalization, flexibility, and control.</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <section id="tong-quan" class="tab-panel active">
+        <div class="grid lg:grid-cols-3 gap-5">
+          <div class="glass card rounded-[2rem] p-6 lg:col-span-2">
+            <p class="tag text-red-600 font-bold">Mục tiêu seminar</p>
+            <h2 class="text-4xl font-black mt-2">Giúp khách hiểu nguyên nhân gốc của cơn đau</h2>
+            <p class="mt-4 text-lg text-slate-600">
+              Không chỉ xoa bóp nơi đau, mà cần nhìn toàn bộ chuỗi cơ thể: cổ, vai, bả vai, cột sống, cơ lõi, hông và mông.
+            </p>
+            <div class="mt-6 grid md:grid-cols-3 gap-4">
+              <div class="rounded-3xl bg-white p-5 border"><p class="text-4xl font-black text-red-600">01</p><b>Nhận diện cơ</b><p class="text-sm text-slate-500 mt-1">Biết vùng nào đang quá tải.</p></div>
+              <div class="rounded-3xl bg-white p-5 border"><p class="text-4xl font-black text-red-600">02</p><b>Hiểu cơ chế đau</b><p class="text-sm text-slate-500 mt-1">Sai tư thế, yếu cơ, căng cơ, quá tải.</p></div>
+              <div class="rounded-3xl bg-white p-5 border"><p class="text-4xl font-black text-red-600">03</p><b>Biết cách phòng ngừa</b><p class="text-sm text-slate-500 mt-1">Kéo giãn, kích hoạt, tăng sức mạnh.</p></div>
             </div>
-          </section>
-
-          <!-- STORY -->
-          <section class="mt-10 rounded-[30px] bg-white/85 border border-white/70 p-6 md:p-8 soft-card">
-            <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
-              <div>
-                <div class="lang-vi text-sm font-black uppercase tracking-[0.22em] text-red-600">
-                  Transition story
-                </div>
-                <div class="lang-en lang-hidden text-sm font-black uppercase tracking-[0.22em] text-red-600">
-                  Transition story
-                </div>
-
-                <h2 class="lang-vi mt-3 text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-                  Câu chuyện chuyển đổi cần staff và khách hàng cùng hiểu thật rõ
-                </h2>
-                <h2 class="lang-en lang-hidden mt-3 text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-                  The transition story should be clear for both staff and clients
-                </h2>
-
-                <p class="lang-vi mt-4 text-slate-600 leading-8">
-                  Không chỉ là đổi cấu trúc giá. Đây là cách Cali chuyển từ “bán package cố định” sang
-                  “thiết kế membership theo lifestyle”.
-                </p>
-                <p class="lang-en lang-hidden mt-4 text-slate-600 leading-8">
-                  This is not just a pricing change. It is Cali’s shift from selling fixed packages
-                  to designing memberships around lifestyle.
-                </p>
-
-                <div class="story-tabs grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-2xl">
-                  <button class="story-tab" data-step="0">
-                    <span class="lang-vi">Bước 1</span>
-                    <span class="lang-en lang-hidden">Step 1</span>
-                  </button>
-                  <button class="story-tab" data-step="1">
-                    <span class="lang-vi">Bước 2</span>
-                    <span class="lang-en lang-hidden">Step 2</span>
-                  </button>
-                  <button class="story-tab" data-step="2">
-                    <span class="lang-vi">Bước 3</span>
-                    <span class="lang-en lang-hidden">Step 3</span>
-                  </button>
-                  <button class="story-tab" data-step="3">
-                    <span class="lang-vi">Bước 4</span>
-                    <span class="lang-en lang-hidden">Step 4</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="story-panel">
-                <div class="story-step" data-step-content="0">
-                  <div class="inline-flex items-center rounded-full bg-red-50 text-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em]">
-                    <span class="lang-vi">Mô hình cũ</span>
-                    <span class="lang-en lang-hidden">Old model</span>
-                  </div>
-
-                  <h3 class="lang-vi mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Trước đây khách thường phải chọn <span class="text-red-600">bundle cố định</span>
-                  </h3>
-                  <h3 class="lang-en lang-hidden mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Clients often had to choose <span class="text-red-600">fixed bundles</span>
-                  </h3>
-
-                  <p class="lang-vi mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    Nhiều trường hợp khách phải trả cho các quyền lợi mình không thật sự sử dụng thường xuyên,
-                    chỉ vì package đó đã được đóng sẵn.
-                  </p>
-                  <p class="lang-en lang-hidden mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    In many cases, clients paid for benefits they did not regularly use simply because
-                    the package was pre-built.
-                  </p>
-
-                  <div class="mt-7 grid md:grid-cols-2 gap-4">
-                    <div class="rounded-2xl border border-slate-200 bg-white p-5">
-                      <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                        <span class="lang-vi">Pain point</span>
-                        <span class="lang-en lang-hidden">Pain point</span>
-                      </div>
-                      <p class="lang-vi mt-2 text-slate-700 leading-7">
-                        Một mức giá nhưng chưa chắc phù hợp với nhu cầu thật của từng khách.
-                      </p>
-                      <p class="lang-en lang-hidden mt-2 text-slate-700 leading-7">
-                        One price point, but not necessarily the right fit for every client’s actual needs.
-                      </p>
-                    </div>
-
-                    <div class="rounded-2xl border border-slate-200 bg-white p-5">
-                      <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                        <span class="lang-vi">Sales challenge</span>
-                        <span class="lang-en lang-hidden">Sales challenge</span>
-                      </div>
-                      <p class="lang-vi mt-2 text-slate-700 leading-7">
-                        Staff thường phải bảo vệ “giá”, thay vì bán sự phù hợp và giá trị thực tế.
-                      </p>
-                      <p class="lang-en lang-hidden mt-2 text-slate-700 leading-7">
-                        Staff often had to defend “price” instead of selling fit and real value.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="story-step hidden" data-step-content="1">
-                  <div class="inline-flex items-center rounded-full bg-red-50 text-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em]">
-                    <span class="lang-vi">Điểm thay đổi</span>
-                    <span class="lang-en lang-hidden">The shift</span>
-                  </div>
-
-                  <h3 class="lang-vi mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Đã đến lúc ngừng bán <span class="text-red-600">“giá”</span>
-                  </h3>
-                  <h3 class="lang-en lang-hidden mt-4 text-4xl font-black leading-tight text-slate-900">
-                    It is time to stop selling <span class="text-red-600">“price”</span>
-                  </h3>
-
-                  <p class="lang-vi mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    Và bắt đầu bán sự phù hợp, tính cá nhân hóa và khả năng kiểm soát chi tiêu theo đúng lifestyle
-                    của từng khách hàng.
-                  </p>
-                  <p class="lang-en lang-hidden mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    And start selling fit, personalization, and spending control based on each client’s lifestyle.
-                  </p>
-
-                  <div class="mt-7 grid md:grid-cols-3 gap-4">
-                    <div class="pillar-card">
-                      <div class="pillar-icon">F</div>
-                      <h4>Flexibility</h4>
-                      <p class="lang-vi">Không còn bị giới hạn trong các bundle cố định.</p>
-                      <p class="lang-en lang-hidden">No longer limited to rigid fixed bundles.</p>
-                    </div>
-
-                    <div class="pillar-card">
-                      <div class="pillar-icon">P</div>
-                      <h4>Personalization</h4>
-                      <p class="lang-vi">Khách chỉ chọn những gì thật sự phù hợp với mình.</p>
-                      <p class="lang-en lang-hidden">Clients choose only what truly fits them.</p>
-                    </div>
-
-                    <div class="pillar-card">
-                      <div class="pillar-icon">C</div>
-                      <h4>Control</h4>
-                      <p class="lang-vi">Kiểm soát chi phí tốt hơn theo tần suất sử dụng thực tế.</p>
-                      <p class="lang-en lang-hidden">Better spending control based on real usage patterns.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="story-step hidden" data-step-content="2">
-                  <div class="inline-flex items-center rounded-full bg-red-50 text-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em]">
-                    <span class="lang-vi">Cách nói mới</span>
-                    <span class="lang-en lang-hidden">New selling language</span>
-                  </div>
-
-                  <h3 class="lang-vi mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Giờ đây khách có thể <span class="text-red-600">tự thiết kế membership</span>
-                  </h3>
-                  <h3 class="lang-en lang-hidden mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Now clients can <span class="text-red-600">design their own membership</span>
-                  </h3>
-
-                  <p class="lang-vi mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    Theo đúng lifestyle và nhu cầu tập luyện của mình, thay vì phải cố fit vào một package cố định.
-                  </p>
-                  <p class="lang-en lang-hidden mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    Based on their own lifestyle and training needs, instead of trying to fit into a fixed package.
-                  </p>
-
-                  <div class="mt-7 comparison-grid">
-                    <div class="comparison-card comparison-card-old">
-                      <div class="comparison-badge">
-                        <span class="lang-vi">Current model</span>
-                        <span class="lang-en lang-hidden">Current model</span>
-                      </div>
-                      <ul class="comparison-list">
-                        <li>
-                          <span class="lang-vi">Bundle đóng sẵn</span>
-                          <span class="lang-en lang-hidden">Pre-built bundles</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Dễ hiểu với khách cũ</span>
-                          <span class="lang-en lang-hidden">Easy for existing members</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Có thể chứa quyền lợi khách ít dùng</span>
-                          <span class="lang-en lang-hidden">May include underused benefits</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Chỉ bán đến hết June 2026</span>
-                          <span class="lang-en lang-hidden">Available only until end of June 2026</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="comparison-card comparison-card-new">
-                      <div class="comparison-badge comparison-badge-red">
-                        <span class="lang-vi">New model from July 2026</span>
-                        <span class="lang-en lang-hidden">New model from July 2026</span>
-                      </div>
-                      <ul class="comparison-list">
-                        <li>
-                          <span class="lang-vi">Chọn access riêng</span>
-                          <span class="lang-en lang-hidden">Choose access separately</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Thêm benefits theo nhu cầu</span>
-                          <span class="lang-en lang-hidden">Add benefits by need</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Linh hoạt hơn</span>
-                          <span class="lang-en lang-hidden">More flexible</span>
-                        </li>
-                        <li>
-                          <span class="lang-vi">Kiểm soát chi phí tốt hơn</span>
-                          <span class="lang-en lang-hidden">Better spending control</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="story-step hidden" data-step-content="3">
-                  <div class="inline-flex items-center rounded-full bg-red-50 text-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em]">
-                    <span class="lang-vi">Cơ hội hiện tại</span>
-                    <span class="lang-en lang-hidden">Current opportunity</span>
-                  </div>
-
-                  <h3 class="lang-vi mt-4 text-4xl font-black leading-tight text-slate-900">
-                    Đây là <span class="text-red-600">giai đoạn cuối</span> để khách renew hoặc gia hạn sản phẩm hiện tại
-                  </h3>
-                  <h3 class="lang-en lang-hidden mt-4 text-4xl font-black leading-tight text-slate-900">
-                    This is the <span class="text-red-600">final period</span> to renew or extend current products
-                  </h3>
-
-                  <p class="lang-vi mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    Nếu khách vẫn thích quyền lợi và cách sử dụng quen thuộc, đây là thời điểm tốt nhất để chốt trước
-                    khi hướng sản phẩm mới được áp dụng rộng rãi.
-                  </p>
-                  <p class="lang-en lang-hidden mt-5 text-lg text-slate-600 leading-8 max-w-3xl">
-                    If clients still prefer their familiar benefits and usage model, this is the best time to secure
-                    them before the new direction is applied broadly.
-                  </p>
-
-                  <div class="mt-7 grid md:grid-cols-2 gap-4">
-                    <div class="rounded-2xl border border-red-200 bg-red-50/70 p-5">
-                      <div class="text-xs font-black uppercase tracking-[0.18em] text-red-600">
-                        <span class="lang-vi">Cho staff</span>
-                        <span class="lang-en lang-hidden">For staff</span>
-                      </div>
-                      <p class="lang-vi mt-2 text-slate-700 leading-7">
-                        Từ nay đến hết June 2026, tập trung maximize current package, chốt renewal, extension và upsell
-                        trên nền sản phẩm khách đã quen.
-                      </p>
-                      <p class="lang-en lang-hidden mt-2 text-slate-700 leading-7">
-                        From now until the end of June 2026, focus on maximizing current packages, renewals, extensions,
-                        and upsell on top of products clients already know.
-                      </p>
-                    </div>
-
-                    <div class="rounded-2xl border border-slate-200 bg-white p-5">
-                      <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                        <span class="lang-vi">Cho khách hàng</span>
-                        <span class="lang-en lang-hidden">For clients</span>
-                      </div>
-                      <p class="lang-vi mt-2 text-slate-700 leading-7">
-                        Nếu bạn thích sản phẩm hiện tại, đây là thời điểm phù hợp để renew hoặc khóa trước quyền lợi quen thuộc.
-                      </p>
-                      <p class="lang-en lang-hidden mt-2 text-slate-700 leading-7">
-                        If you like the current products, this is the right moment to renew or lock in familiar benefits early.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="rounded-[2rem] bg-red-600 text-white p-6">
+            <p class="tag text-red-100 font-bold">Nội dung 60 phút</p>
+            <div class="mt-5 space-y-4 text-lg">
+              <p><b>0–10’</b> Khởi động câu hỏi: “Bạn đau ở đâu?”</p>
+              <p><b>10–25’</b> Giải phẫu dễ hiểu</p>
+              <p><b>25–40’</b> Cơ chế đau</p>
+              <p><b>40–50’</b> Test nhanh</p>
+              <p><b>50–60’</b> Hỏi đáp và khuyến nghị</p>
             </div>
-          </section>
-
-          <!-- PRODUCT TABS -->
-          <section id="product-section" class="mt-12">
-            <div class="product-tabs max-w-5xl">
-              <button class="product-tab is-active" data-product-tab="intro">
-                <span class="lang-vi">Introduction</span>
-                <span class="lang-en lang-hidden">Introduction</span>
-              </button>
-              <button class="product-tab" data-product-tab="combo">
-                <span class="lang-vi">Combo gợi ý</span>
-                <span class="lang-en lang-hidden">Recommended Combos</span>
-              </button>
-              <button class="product-tab" data-product-tab="builder">
-                <span class="lang-vi">Tự thiết kế membership</span>
-                <span class="lang-en lang-hidden">Build Your Own Membership</span>
-              </button>
-            </div>
-          </section>
-
-          <!-- INTRO TAB PANEL -->
-          <section id="panel-intro" class="product-panel mt-6 rounded-3xl bg-white border border-slate-200 p-6 md:p-8 soft-card">
-            <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8">
-              <div>
-                <p class="lang-vi text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                  Campaign introduction
-                </p>
-                <p class="lang-en lang-hidden text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                  Campaign introduction
-                </p>
-
-                <h2 class="lang-vi mt-2 text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-                  Một trang để staff trình bày rõ ràng, khách hàng hiểu nhanh và dễ được truyền cảm hứng hơn
-                </h2>
-                <h2 class="lang-en lang-hidden mt-2 text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-                  A page that helps staff present clearly, helps clients understand quickly, and inspires action
-                </h2>
-
-                <p class="lang-vi mt-4 text-slate-600 leading-8">
-                  Page này được thiết kế để phục vụ đồng thời 2 mục tiêu: bán mạnh gói cũ từ nay đến hết tháng 6/2026,
-                  và chuẩn bị tâm lý cho khách hàng về mô hình mới từ tháng 7/2026.
-                </p>
-                <p class="lang-en lang-hidden mt-4 text-slate-600 leading-8">
-                  This page is designed to serve two goals at once: maximize current-package sales through June 2026,
-                  and prepare clients for the new model starting in July 2026.
-                </p>
-
-                <div class="mt-6 grid sm:grid-cols-2 gap-4">
-                  <div class="info-card">
-                    <div class="info-kicker">
-                      <span class="lang-vi">Core message 1</span>
-                      <span class="lang-en lang-hidden">Core message 1</span>
-                    </div>
-                    <h3>
-                      <span class="lang-vi">Gói cũ sẽ dừng bán từ July 2026</span>
-                      <span class="lang-en lang-hidden">Old packages stop selling from July 2026</span>
-                    </h3>
-                    <p>
-                      <span class="lang-vi">Thông điệp rõ, dễ nhớ, dễ training cho toàn đội.</span>
-                      <span class="lang-en lang-hidden">A clear message that is easy to remember and easy to train across teams.</span>
-                    </p>
-                  </div>
-
-                  <div class="info-card">
-                    <div class="info-kicker">
-                      <span class="lang-vi">Core message 2</span>
-                      <span class="lang-en lang-hidden">Core message 2</span>
-                    </div>
-                    <h3>
-                      <span class="lang-vi">Đây là thời điểm tốt nhất để mua ngay</span>
-                      <span class="lang-en lang-hidden">This is the best time to buy now</span>
-                    </h3>
-                    <p>
-                      <span class="lang-vi">Tạo urgency tích cực mà vẫn hợp lý cho khách hàng hiện hữu.</span>
-                      <span class="lang-en lang-hidden">Creates positive urgency while staying credible for existing clients.</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="mt-6 callout-strip">
-                  <div class="callout-icon">!</div>
-                  <div>
-                    <div class="callout-title">
-                      <span class="lang-vi">Recommended staff language</span>
-                      <span class="lang-en lang-hidden">Recommended staff language</span>
-                    </div>
-                    <p class="lang-vi callout-copy">
-                      “Nếu anh/chị vẫn thích quyền lợi quen thuộc của gói hiện tại, đây là giai đoạn tốt nhất để renew hoặc gia hạn trước khi cấu trúc mới được áp dụng từ tháng 7/2026.”
-                    </p>
-                    <p class="lang-en lang-hidden callout-copy">
-                      “If you still prefer the familiar benefits of the current package, this is the best window to renew or extend before the new structure is applied from July 2026.”
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="space-y-4">
-                <div class="feature-frame">
-                  <div class="feature-number">01</div>
-                  <div>
-                    <h3>
-                      <span class="lang-vi">Dễ trình bày với staff</span>
-                      <span class="lang-en lang-hidden">Easy for staff to present</span>
-                    </h3>
-                    <p>
-                      <span class="lang-vi">Timeline + story + selling language giúp đội ngũ nói cùng một thông điệp.</span>
-                      <span class="lang-en lang-hidden">Timeline + story + selling language keep the whole team aligned.</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="feature-frame">
-                  <div class="feature-number">02</div>
-                  <div>
-                    <h3>
-                      <span class="lang-vi">Dễ hiểu với khách hàng</span>
-                      <span class="lang-en lang-hidden">Easy for clients to understand</span>
-                    </h3>
-                    <p>
-                      <span class="lang-vi">Khách thấy rõ lý do đổi model, lợi ích mới và hành động cần làm ngay.</span>
-                      <span class="lang-en lang-hidden">Clients can clearly see why the model is changing, what the benefits are, and what action to take now.</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="feature-frame">
-                  <div class="feature-number">03</div>
-                  <div>
-                    <h3>
-                      <span class="lang-vi">Dẫn thẳng sang phần bán hàng</span>
-                      <span class="lang-en lang-hidden">Flows straight into selling</span>
-                    </h3>
-                    <p>
-                      <span class="lang-vi">Sau khi hiểu câu chuyện, người xem chuyển ngay sang combo gợi ý hoặc builder.</span>
-                      <span class="lang-en lang-hidden">After understanding the story, the viewer can move directly into recommended combos or the builder.</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                  <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                    <span class="lang-vi">Call to action</span>
-                    <span class="lang-en lang-hidden">Call to action</span>
-                  </div>
-
-                  <p class="lang-vi mt-3 text-slate-700 leading-7">
-                    Từ nay đến hết tháng 6/2026: maximize current package.
-                    Từ tháng 7/2026: chuyển ngôn ngữ bán hàng sang access + benefits + personalization.
-                  </p>
-                  <p class="lang-en lang-hidden mt-3 text-slate-700 leading-7">
-                    From now until the end of June 2026: maximize current packages.
-                    From July 2026 onward: shift sales language to access + benefits + personalization.
-                  </p>
-
-                  <div class="mt-5 flex flex-col sm:flex-row gap-3">
-                    <button type="button" class="cta-primary" onclick="openProductTabAndScroll('combo')">
-                      <span class="lang-vi">Xem combo gợi ý</span>
-                      <span class="lang-en lang-hidden">View recommended combos</span>
-                    </button>
-                    <button type="button" class="cta-secondary" onclick="openProductTabAndScroll('builder')">
-                      <span class="lang-vi">Xây membership mẫu</span>
-                      <span class="lang-en lang-hidden">Build a sample membership</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- COMBO TAB PANEL -->
-          <section id="panel-combo" class="product-panel mt-6 rounded-3xl bg-white border border-slate-200 p-6 soft-card hidden">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
-              <div>
-                <p class="lang-vi text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                  Combo gợi ý
-                </p>
-                <p class="lang-en lang-hidden text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                  Recommended combos
-                </p>
-
-                <h2 class="lang-vi mt-2 text-2xl font-black text-slate-900">
-                  5 combo phổ biến nhất theo lifestyle và nhu cầu tập luyện
-                </h2>
-                <h2 class="lang-en lang-hidden mt-2 text-2xl font-black text-slate-900">
-                  5 most popular combos based on lifestyle and training needs
-                </h2>
-              </div>
-
-              <div class="lang-vi text-sm text-slate-500 max-w-xl">
-                Đây là các cấu hình gợi ý để khách chọn nhanh hơn. Sau đó vẫn có thể tiếp tục tùy chỉnh theo nhu cầu.
-              </div>
-              <div class="lang-en lang-hidden text-sm text-slate-500 max-w-xl">
-                These are suggested starting points to help clients choose faster. They can still customize further afterward.
-              </div>
-            </div>
-
-            <div id="comboGroups" class="space-y-8"></div>
-          </section>
-
-          <!-- BUILDER TAB PANEL -->
-          <section id="panel-builder" class="product-panel mt-6 hidden">
-            <div class="grid xl:grid-cols-[1.1fr_0.9fr] gap-6">
-              <section class="rounded-3xl bg-white border border-slate-200 p-6 soft-card">
-                <div class="mb-6">
-                  <p class="lang-vi text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                    Membership builder
-                  </p>
-                  <p class="lang-en lang-hidden text-sm font-bold uppercase tracking-[0.2em] text-red-600">
-                    Membership builder
-                  </p>
-
-                  <h2 class="lang-vi mt-2 text-2xl font-black text-slate-900">
-                    Tự thiết kế membership theo đúng nhu cầu khách
-                  </h2>
-                  <h2 class="lang-en lang-hidden mt-2 text-2xl font-black text-slate-900">
-                    Build a membership around real client needs
-                  </h2>
-                </div>
-
-                <div class="mb-6">
-                  <div class="lang-vi font-bold mb-2 text-slate-900">Bước 1 — Chọn thời hạn</div>
-                  <div class="lang-en lang-hidden font-bold mb-2 text-slate-900">Step 1 — Select duration</div>
-                  <div id="durationOptions" class="grid md:grid-cols-4 gap-4"></div>
-                </div>
-
-                <div class="mb-6">
-                  <div class="lang-vi font-bold mb-2 text-slate-900">Bước 2 — Chọn gym access</div>
-                  <div class="lang-en lang-hidden font-bold mb-2 text-slate-900">Step 2 — Select gym access</div>
-                  <div id="accessOptions" class="grid md:grid-cols-2 gap-4"></div>
-                </div>
-
-                <div>
-                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
-                    <div>
-                      <div class="lang-vi font-bold text-slate-900">Bước 3 — Chọn benefits</div>
-                      <div class="lang-en lang-hidden font-bold text-slate-900">Step 3 — Select benefits</div>
-                    </div>
-
-                    <div class="rounded-full bg-slate-50 border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600">
-                      <span class="lang-vi">Discount theo số benefit: 1st -10%, 2nd -15%, từ 3rd trở đi -20%</span>
-                      <span class="lang-en lang-hidden">Benefit discount by order: 1st -10%, 2nd -15%, 3rd onward -20%</span>
-                    </div>
-                  </div>
-
-                  <div id="benefitGroups" class="space-y-6"></div>
-                </div>
-              </section>
-
-              <section class="rounded-3xl summary-panel p-6 text-white soft-card">
-                <div class="flex items-center justify-between gap-3">
-                  <div>
-                    <div class="lang-vi text-sm uppercase text-slate-400 font-bold tracking-[0.2em]">Summary</div>
-                    <div class="lang-en lang-hidden text-sm uppercase text-slate-400 font-bold tracking-[0.2em]">Summary</div>
-                    <h3 class="lang-vi mt-2 text-2xl font-black">Membership của khách</h3>
-                    <h3 class="lang-en lang-hidden mt-2 text-2xl font-black">Client membership</h3>
-                  </div>
-
-                  <div id="benefitCountBadge" class="rounded-full bg-red-500 px-3 py-1 text-xs font-black text-white">
-                    0
-                  </div>
-                </div>
-
-                <div class="mt-6 grid md:grid-cols-3 gap-4">
-                  <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                    <div class="lang-vi text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Duration</div>
-                    <div class="lang-en lang-hidden text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Duration</div>
-                    <div id="summaryDuration" class="mt-2 text-lg font-black text-white"></div>
-                  </div>
-
-                  <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                    <div class="lang-vi text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Access</div>
-                    <div class="lang-en lang-hidden text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Access</div>
-                    <div id="summaryAccess" class="mt-2 text-lg font-black text-white"></div>
-                    <div id="summaryAccessRemark" class="mt-1 text-sm text-slate-300"></div>
-                  </div>
-
-                  <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                    <div class="lang-vi text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Monthly</div>
-                    <div class="lang-en lang-hidden text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Monthly</div>
-                    <div id="summaryMonthly" class="mt-2 text-2xl font-black text-white"></div>
-                  </div>
-                </div>
-
-                <div class="mt-4 rounded-2xl bg-white/5 border border-white/10 p-4">
-                  <div class="lang-vi text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Total package value</div>
-                  <div class="lang-en lang-hidden text-xs uppercase text-slate-300 font-bold tracking-[0.18em]">Total package value</div>
-                  <div id="summaryTotal" class="mt-2 text-3xl font-black text-white"></div>
-                </div>
-
-                <div class="mt-6">
-                  <div class="lang-vi text-sm uppercase text-slate-400 font-bold tracking-[0.18em]">Selected benefits</div>
-                  <div class="lang-en lang-hidden text-sm uppercase text-slate-400 font-bold tracking-[0.18em]">Selected benefits</div>
-                  <div id="summaryBenefits" class="mt-4"></div>
-                </div>
-
-                <div id="summaryFootnote" class="mt-5 text-xs leading-6 text-slate-400"></div>
-              </section>
-            </div>
-          </section>
-
+          </div>
         </div>
       </section>
+
+      <section id="nhom-co" class="tab-panel">
+        <div class="glass card rounded-[2rem] p-6 md:p-8">
+          <p class="tag text-red-600 font-bold">Phần 1</p>
+          <h2 class="text-4xl font-black mb-6">Các nhóm cơ chính cần giải thích</h2>
+          <div class="grid md:grid-cols-5 gap-4">
+            <div class="rounded-3xl bg-red-50 border border-red-100 overflow-hidden">
+              <img src="co.jpg" class="zoom-image w-full h-44 object-cover bg-white" alt="Minh họa nhóm cơ cổ">
+              <div class="p-5">
+                <h3 class="text-xl font-black">Cổ</h3>
+                <p class="text-sm text-slate-600 mt-2">Cơ cổ sâu, cơ ức đòn chũm, cơ bậc thang.</p>
+                <p class="mt-3 text-sm"><b>Vai trò:</b> giữ đầu thẳng, cúi, ngửa, xoay cổ.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-orange-50 border border-orange-100 overflow-hidden">
+              <img src="vai-gay.jpg" class="zoom-image w-full h-44 object-cover bg-white" alt="Minh họa nhóm cơ vai gáy">
+              <div class="p-5">
+                <h3 class="text-xl font-black">Vai gáy</h3>
+                <p class="text-sm text-slate-600 mt-2">Cơ thang trên, cơ nâng vai.</p>
+                <p class="mt-3 text-sm"><b>Vai trò:</b> nâng vai, ổn định bả vai, hỗ trợ cổ.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-blue-50 border border-blue-100 overflow-hidden">
+              <img src="bavai-nguc.jpg" class="zoom-image w-full h-44 object-cover bg-white" alt="Minh họa nhóm cơ bả vai và ngực">
+              <div class="p-5">
+                <h3 class="text-xl font-black">Bả vai - ngực</h3>
+                <p class="text-sm text-slate-600 mt-2">Cơ trám, cơ răng trước, cơ ngực.</p>
+                <p class="mt-3 text-sm"><b>Vai trò:</b> mở ngực, kéo vai về sau, kiểm soát bả vai.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-emerald-50 border border-emerald-100 overflow-hidden">
+              <img src="coloi-lung.jpg" class="zoom-image w-full h-44 object-cover bg-white" alt="Minh họa cơ lõi và lưng">
+              <div class="p-5">
+                <h3 class="text-xl font-black">Cơ lõi - lưng</h3>
+                <p class="text-sm text-slate-600 mt-2">Cơ bụng, cơ liên sườn, cơ dựng sống.</p>
+                <p class="mt-3 text-sm"><b>Vai trò:</b> ổn định cột sống, truyền lực khi vận động.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-violet-50 border border-violet-100 overflow-hidden">
+              <img src="hong-mong.jpg" class="zoom-image w-full h-44 object-cover bg-white" alt="Minh họa nhóm cơ hông và mông">
+              <div class="p-5">
+                <h3 class="text-xl font-black">Hông - mông</h3>
+                <p class="text-sm text-slate-600 mt-2">Cơ mông, cơ gập hông, gân kheo.</p>
+                <p class="mt-3 text-sm"><b>Vai trò:</b> kiểm soát khung chậu, giảm tải lưng dưới.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-3xl bg-slate-950 text-white p-5">
+            <h3 class="font-black text-xl">Tên file cần lưu chung thư mục HTML</h3>
+            <p class="mt-2 text-slate-300 text-sm">
+              co.jpg • vai-gay.jpg • bavai-nguc.jpg • coloi-lung.jpg • hong-mong.jpg
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="co-vai-gay" class="tab-panel">
+        <div class="glass card rounded-[2rem] p-6 md:p-8">
+          <p class="tag text-red-600 font-bold">Phần 2</p>
+          <h2 class="text-4xl font-black mb-6">Vì sao đau cổ vai gáy?</h2>
+          <div class="grid md:grid-cols-2 gap-5">
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="1.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Đầu đưa ra trước">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">1. Đầu đưa ra trước</h3>
+                <p class="text-slate-600 mt-3">
+                  Khi ngồi máy tính hoặc dùng điện thoại lâu, đầu trôi ra trước làm cơ cổ sau và cơ thang trên phải giữ đầu liên tục.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="2.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Vai cuộn vào trong">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">2. Vai cuộn vào trong</h3>
+                <p class="text-slate-600 mt-3">
+                  Cơ ngực căng, bả vai yếu khiến cổ và vai gáy phải bù trừ.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="3.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Thở nông và căng thẳng">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">3. Thở nông, căng thẳng</h3>
+                <p class="text-slate-600 mt-3">
+                  Căng thẳng làm tăng gồng cơ, đặc biệt vùng cổ, vai và gáy.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="4.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Cơ cổ sâu và bả vai yếu">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">4. Cơ cổ sâu và bả vai yếu</h3>
+                <p class="text-slate-600 mt-3">
+                  Nhóm cơ giữ ổn định yếu khiến nhóm cơ lớn bị quá tải và đau tái phát.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mt-6 rounded-3xl bg-slate-950 text-white p-5">
+            <h3 class="font-black text-xl">Tên file hình cần lưu</h3>
+            <p class="mt-2 text-slate-300 text-sm">
+              1.jpg • 2.jpg • 3.jpg • 4.jpg
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="lung-duoi" class="tab-panel">
+        <div class="glass card rounded-[2rem] p-6 md:p-8">
+          <p class="tag text-red-600 font-bold">Phần 3</p>
+          <h2 class="text-4xl font-black mb-6">Vì sao đau lưng dưới?</h2>
+          <div class="grid md:grid-cols-2 gap-5">
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="ld1.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Căng cơ hoặc dây chằng">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">1. Căng cơ hoặc dây chằng</h3>
+                <p class="text-slate-600 mt-3">
+                  Nâng vật nặng, xoay người đột ngột hoặc tập sai kỹ thuật dễ làm vùng lưng dưới quá tải.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="ld2.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Cơ lõi yếu">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">2. Cơ lõi yếu</h3>
+                <p class="text-slate-600 mt-3">
+                  Khi cơ lõi không giữ cột sống tốt, lưng dưới phải gánh nhiều hơn.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="ld3.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Hông và mông hoạt động kém">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">3. Hông và mông hoạt động kém</h3>
+                <p class="text-slate-600 mt-3">
+                  Ngồi nhiều làm cơ gập hông căng, cơ mông yếu, khung chậu mất ổn định.
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border bg-white">
+              <img src="ld4.jpg" class="zoom-image w-full h-64 object-cover bg-slate-100" alt="Thiếu độ linh hoạt">
+              <div class="p-5">
+                <h3 class="font-black text-2xl">4. Thiếu độ linh hoạt</h3>
+                <p class="text-slate-600 mt-3">
+                  Hông và lưng trên cứng khiến lưng dưới phải gập, xoay và chịu tải quá mức.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mt-6 rounded-3xl bg-slate-950 text-white p-5">
+            <h3 class="font-black text-xl">Tên file hình cần lưu</h3>
+            <p class="mt-2 text-slate-300 text-sm">
+              ld1.jpg • ld2.jpg • ld3.jpg • ld4.jpg
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="nguyen-nhan" class="tab-panel">
+        <div class="glass card rounded-[2rem] p-6 md:p-8">
+          <p class="tag text-red-600 font-bold">Khung phân tích</p>
+          <h2 class="text-4xl font-black mb-6">5 nguyên nhân gốc thường gặp</h2>
+          <div class="grid md:grid-cols-5 gap-4">
+            <div class="rounded-3xl bg-slate-950 text-white p-5"><p class="text-3xl font-black text-red-400">01</p><h3 class="font-black mt-2">Tư thế</h3><p class="text-sm text-slate-300 mt-2">Ngồi, đứng, dùng điện thoại, dùng laptop sai.</p></div>
+            <div class="rounded-3xl bg-white p-5 border"><p class="text-3xl font-black text-red-600">02</p><h3 class="font-black mt-2">Độ linh hoạt</h3><p class="text-sm text-slate-600 mt-2">Cứng cổ, lưng trên, hông, gân kheo.</p></div>
+            <div class="rounded-3xl bg-white p-5 border"><p class="text-3xl font-black text-red-600">03</p><h3 class="font-black mt-2">Độ ổn định</h3><p class="text-sm text-slate-600 mt-2">Cơ lõi, cổ sâu, bả vai và khung chậu yếu.</p></div>
+            <div class="rounded-3xl bg-white p-5 border"><p class="text-3xl font-black text-red-600">04</p><h3 class="font-black mt-2">Quá tải</h3><p class="text-sm text-slate-600 mt-2">Tập luyện hoặc nâng vật quá sức, tăng tải quá nhanh.</p></div>
+            <div class="rounded-3xl bg-white p-5 border"><p class="text-3xl font-black text-red-600">05</p><h3 class="font-black mt-2">Phục hồi</h3><p class="text-sm text-slate-600 mt-2">Ngủ kém, căng thẳng, thiếu hồi phục mô mềm.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="hinh-anh" class="tab-panel">
+        <div class="glass card rounded-[2rem] p-6 md:p-8">
+          <p class="tag text-red-600 font-bold">Hình minh họa</p>
+          <h2 class="text-4xl font-black mb-6">Hình ảnh minh họa cho seminar</h2>
+          <div class="grid md:grid-cols-3 gap-5">
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-tu-the-ngoi.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Tư thế ngồi sai</h3><p class="text-sm text-slate-600 mt-2">Đầu đưa ra trước, vai cuộn vào trong khi dùng máy tính.</p></div></div>
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-co-vai-gay.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Đau cổ vai gáy</h3><p class="text-sm text-slate-600 mt-2">Vùng cổ, cơ thang và cơ nâng vai bị căng kéo dài.</p></div></div>
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-lung-duoi.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Đau lưng dưới</h3><p class="text-sm text-slate-600 mt-2">Áp lực lên vùng thắt lưng khi cơ lõi và hông hoạt động kém.</p></div></div>
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-cot-song.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Cột sống và đường cong tự nhiên</h3><p class="text-sm text-slate-600 mt-2">Giúp người nghe hiểu cổ, lưng trên và lưng dưới liên kết với nhau.</p></div></div>
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-co-loi-mong-hong.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Cơ lõi, mông và hông</h3><p class="text-sm text-slate-600 mt-2">Nhóm cơ giúp ổn định khung chậu và giảm tải cho lưng dưới.</p></div></div>
+            <div class="rounded-3xl overflow-hidden border bg-white"><img src="img-bai-tap-phong-ngua.jpg" class="zoom-image w-full h-64 object-cover"><div class="p-4"><h3 class="font-black text-lg">Bài tập phòng ngừa</h3><p class="text-sm text-slate-600 mt-2">Kéo giãn, kích hoạt cơ và tăng sức mạnh đúng cách.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="thuc-hanh" class="tab-panel">
+        <div class="grid lg:grid-cols-2 gap-5">
+          <div class="glass card rounded-[2rem] p-6 md:p-8">
+            <p class="tag text-red-600 font-bold">Test nhanh</p>
+            <h2 class="text-4xl font-black mb-6">Bài kiểm tra tại seminar</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white p-4 border"><h3 class="font-black">Kiểm tra tư thế với tường</h3><p class="text-sm text-slate-600 mt-2">Gáy, lưng trên, mông chạm tường để xem đầu có đưa ra trước không.</p></div>
+              <div class="rounded-2xl bg-white p-4 border"><h3 class="font-black">Kiểm tra xoay cổ</h3><p class="text-sm text-slate-600 mt-2">Xoay trái/phải, so sánh độ linh hoạt và cảm giác căng.</p></div>
+              <div class="rounded-2xl bg-white p-4 border"><h3 class="font-black">Kiểm tra gập hông</h3><p class="text-sm text-slate-600 mt-2">Gập người từ hông, giữ lưng trung lập, tránh bù bằng lưng dưới.</p></div>
+              <div class="rounded-2xl bg-white p-4 border"><h3 class="font-black">Kiểm tra cầu mông</h3><p class="text-sm text-slate-600 mt-2">Nếu lưng hoặc đùi trước mỏi hơn mông, cơ mông có thể hoạt động kém.</p></div>
+            </div>
+          </div>
+          <div class="rounded-[2rem] bg-slate-950 text-white p-6 md:p-8">
+            <p class="tag text-red-300 font-bold">Giải pháp</p>
+            <h2 class="text-4xl font-black mb-6">4 bước cải thiện</h2>
+            <div class="space-y-4">
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10"><b>1. Giải phóng cơ:</b> giảm căng vùng cổ, vai, ngực, hông.</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10"><b>2. Tăng linh hoạt:</b> cổ, lưng trên, hông.</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10"><b>3. Kích hoạt cơ:</b> cổ sâu, bả vai, cơ lõi, cơ mông.</div>
+              <div class="rounded-2xl bg-red-600 p-4"><b>4. Tăng sức mạnh:</b> tập có kiểm soát để cơn đau không tái phát.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ket-luan" class="tab-panel">
+        <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-5">
+          <div class="rounded-[2rem] bg-slate-950 text-white p-6 md:p-8">
+            <p class="tag text-red-300 font-bold">Cảnh báo an toàn</p>
+            <h2 class="text-4xl font-black mb-6">Khi nào cần đi khám ngay?</h2>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10">Đau sau té ngã hoặc chấn thương mạnh</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10">Tê, yếu tay hoặc chân tăng dần</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10">Rối loạn tiểu tiện hoặc đại tiện</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10">Sốt, sụt cân, tiền sử bệnh nặng</div>
+              <div class="rounded-2xl bg-white/10 p-4 border border-white/10">Đau về đêm, không giảm khi nghỉ</div>
+              <div class="rounded-2xl bg-red-600 p-4">Đau kéo dài hoặc ngày càng nặng</div>
+            </div>
+          </div>
+          <div class="glass card rounded-[2rem] p-6 md:p-8">
+            <p class="tag text-red-600 font-bold">Kết luận</p>
+            <h2 class="text-4xl font-black">Cơn đau là tín hiệu. Vận động đúng cách mới là giải pháp.</h2>
+            <p class="mt-4 text-lg text-slate-600">Đừng chỉ hỏi “đau ở đâu?”, hãy hỏi “vì sao vùng đó phải chịu tải quá mức?”.</p>
+            <div class="mt-6 rounded-3xl bg-white border p-5">
+              <h3 class="font-black text-xl">Lời kêu gọi hành động</h3>
+              <p class="mt-2 text-slate-600">Đăng ký đánh giá 15 phút với ProPhysio để kiểm tra tư thế, độ linh hoạt, khả năng kích hoạt cơ và nhận khuyến nghị cá nhân hóa.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/app.js"></script>
+  <div id="imageModal" class="fixed inset-0 bg-black/85 hidden items-center justify-center z-50 p-6">
+    <button onclick="closeImageModal()" class="absolute top-5 right-6 text-white text-5xl font-light">&times;</button>
+    <img id="modalImage" src="" class="max-w-[95%] max-h-[95vh] rounded-2xl shadow-2xl">
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function openTab(tabId) {
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => openTab(btn.dataset.tab));
+    });
+
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+
+    document.querySelectorAll('.zoom-image').forEach(img => {
+      img.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modalImg.src = img.src;
+      });
+    });
+
+    function closeImageModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeImageModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeImageModal();
+    });
+  </script>
 </body>
 </html>
